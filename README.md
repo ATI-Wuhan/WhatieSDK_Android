@@ -1,3 +1,0 @@
-# WhatieSDKForAndroid
-WhatieSDK for Android
-
