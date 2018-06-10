@@ -217,7 +217,7 @@ The session will timeout if the app remains unused for a long time. In this case
 #### Password reset with a email address
 If you forget your password, you can reset your password with the e-mail address consisting of 3 steps:
 
-* Sending a verification code to the mailbox
+1. Sending a verification code to the mailbox
 
 ```java
 /**  *   
@@ -237,7 +237,7 @@ If you forget your password, you can reset your password with the e-mail address
 
 ```
 
-* Get and check the verification code
+2. Get and check the verification code
 
 
 ```java
@@ -264,7 +264,7 @@ If you forget your password, you can reset your password with the e-mail address
     });
 ```
 
-* reset password
+3. reset password
 ```java
 /** *
     * @param tag
