@@ -1,7 +1,5 @@
-## Whatie Android SDK Access Guide
 
-
-## WahtieSDK for Android updated at 2018-06-09
+## WahtieSDK for Android v1.2.0 updated at 2018-06-10
 
 ```
 What's new:
