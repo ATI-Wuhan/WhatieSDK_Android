@@ -16,14 +16,6 @@ WhatieSDK is an SDK provided by ATI TECHNOLOGY (WUHAN) CO.,LTD. for the 3rd part
 [![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/6small.jpg)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/6.jpg)
 
 
-[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/1small.PNG)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/1.PNG)
-[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/2small.PNG)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/2.PNG)
-[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/3small.PNG)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/3.PNG)
-[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/4small.PNG)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/4.PNG)
-[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/5small.PNG)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/5.PNG)
-[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/6small.PNG)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/6.PNG)
-
-
 **Note:** For all function points, no any backend development on cloud platform is needed for integrating the SDK into your APP. You just do all of your work in your APP side. 
 
 
@@ -82,8 +74,6 @@ compile 'org.greenrobot:eventbus:3.0.0'       // communations among threads
 
 ### Configure AndroidManifest.xml
 Configuring appId and secretKey in file AndroidManifest.xml, and configure the appropriate permissions, etc.
-
-**Note:**```<meta-data/>```要放在```<application>```标签下，应用id前面要加入```”\ ”```
 
 
 ```java
