@@ -122,7 +122,7 @@ public class DemoApplication extends Application {  
  }
 ```
 
-**Note:**While appId and appSecret should be configured in file AndroidManifest.xml, or in the build environment configuration, they can also be written in the code.
+**Note:** While appId and appSecret should be configured in file AndroidManifest.xml, or in the build environment configuration, they can also be written in the code.
 
 
 
