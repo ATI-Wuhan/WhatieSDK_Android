@@ -869,8 +869,8 @@ Once you update a timing countdown, it will become a new one.
 
 
 
-## 9. Necessary Event
-All event meanings can be found in the corresponding class file. Please check the usage of Eventbus at first glance. For all the usage of these EventBus, associated Event should be handled properly.
+## 9. Necessary Events
+All events meanings can be found in the corresponding class file. Please check the usage of Eventbus at first glance. For all the usage of these EventBus, associated Event should be handled properly.
 
 
 ### Turn on event
@@ -960,9 +960,9 @@ All event meanings can be found in the corresponding class file. Please check th
 
 ```
 
-Welcome to contact us:
-•   Android SDK Contributors: Zheng Li, Pan Zhao, Shiwen Ning
-•   Email : zhouwei20150901@icloud.com, whatie@qq.com
+## Welcome to contact us:
+* Android SDK Contributors: Zheng Li, Pan Zhao, Shiwen Ning
+* Email : zhouwei20150901@icloud.com, whatie@qq.com
 LICENSE
 WhatieSDK uses MIT LICENSE.
 
