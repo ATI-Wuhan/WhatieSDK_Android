@@ -151,7 +151,7 @@ No verification code is required during email registration. Users may register t
      * @param passwd   account password
      * @param callback
      */
-    EHomeInterface.getINSTANCE().registerAccountWithEmail(mContext,     etEmail.getText().toString().trim(), 
+    EHomeInterface.getINSTANCE().registerAccountWithEmail(mContext,etEmail.getText().toString().trim(), 
 etPwd.getText().toString().trim(),
     new UserCallback() {
        @Override
@@ -187,7 +187,9 @@ The session will timeout if the app remains unused for a long time. In this case
         @Override
         public void onSuccess(Response<BaseModelResponse<User>> response) {
             if (response.body().isSuccess()) {
-                EHome.getInstance().setLogin(true);                            EHome.getInstance().setmUser(response.body().getValue());                            EHome.getInstance().setToken(response.body().getToken());                            SharedPreferenceUtils.put(mContext, 
+                EHome.getInstance().setLogin(true);                         EHome.getInstance().setmUser(response.body().getValue());
+                EHome.getInstance().setToken(response.body().getToken());
+                SharedPreferenceUtils.put(mContext, 
                 Code.SP_MD5_PASSWORD, MD5Utils.encode(password));
             } else {
                 if(response.body().getMessage()!=null||!response.body().getMessage()
@@ -235,7 +237,7 @@ If you forget your password, you can reset your password with the e-mail address
 
 ```
 
-* • Get and check the verification code
+* Get and check the verification code
 
 
 ```java
@@ -452,7 +454,7 @@ private class WhatieAsyncTask extends AsyncTask<String, Void, List<IEsptouchResu
     });
 ```
 
-3. After getting SmartConfig token:
+3. Config network after getting SmartConfig token:
 
 ```java
 private EspWifiAdminSimple mWifiAdmin = new EspWifiAdminSimple(this);
@@ -547,7 +549,7 @@ The device name can be renamed by:
 
 
 ### 5.3 Remove device
-You can unbind your device. If the device is unbound, the device is reset to network-pending state after connecting wifi network next time.
+You can remove your device. If the device is removed, the device is reset to network-pending state after connecting wifi network next time.
 
 ```java
 /**  *  
@@ -625,8 +627,8 @@ private long rowId;
 
 ## 6. Sharing Devices
 
-### 6.1 Update a user’s received shared device list
-Get a user’s received shared device list
+### 6.1 Query a user’s received shared device list
+Query a user’s received shared device list
 
 ```java
 /**  * devices sharing from others
