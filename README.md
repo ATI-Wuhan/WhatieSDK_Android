@@ -963,6 +963,7 @@ All events meanings can be found in the corresponding class file. Please check t
 ## Welcome to contact us:
 * Android SDK Contributors: Zheng Li, Pan Zhao, Shiwen Ning
 * Email : zhouwei20150901@icloud.com, whatie@qq.com
-LICENSE
+
+## LICENSE
 WhatieSDK uses MIT LICENSE.
 
