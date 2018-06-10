@@ -264,7 +264,7 @@ If you forget your password, you can reset your password with the e-mail address
     });
 ```
 
-3. reset password
+3. Reset password
 ```java
 /** *
     * @param tag
