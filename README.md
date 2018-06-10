@@ -10,6 +10,13 @@ All APIs for electrical outlets. SDKs for bulbs will be provided about June 12, 
 
 WhatieSDK is an SDK provided by ATI TECHNOLOGY (WUHAN) CO.,LTD. for the 3rd party accessing to our ATI IoT cloud platform easily and quickly. Using this SDK, developers can do almost all funcation points on electrical outlets and RGBW bulbs (to be uploaded on June 12), such as user registration/login/logout, smart configration, add/share/remove devices, device control, timing countdown, timer, etc. 
 
+[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/1small.jpg)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/1.jpg)
+[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/2small.jpg)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/2.jpg)
+[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/3small.jpg)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/3.jpg)
+[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/4small.jpg)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/4.jpg)
+[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/5small.jpg)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/5.jpg)
+[![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/6small.jpg)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/6.jpg)
+
 
 [![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/1small.PNG)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/1.PNG)
 [![](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/2small.PNG)](https://github.com/ATI-Wuhan/WhatieSDK_Android/blob/master/images/2.PNG)
