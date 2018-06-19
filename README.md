@@ -576,7 +576,60 @@ You can remove your device. If the device is removed, the device is reset to net
     });
 
 ```
+### 5.4 Update Light Brightness
+In white mode, you can adjust the brightness of the light.
+```java
+/**  *  
+ * @param devId    device's devId  
+ * @param lValue   set brightness to the light  
+ */  
+public void updateLightBrightness(String devId,String lValue);
 
+```
+### 5.5 Update Light RGBL
+In monochromatic light mode, you can choose the color of the light and adjust the brightness of the light. 
+```java
+/**  *  
+ * @param devId    device's devId  
+ * @param rgb      set rgb  
+ * @param lValue   set brightness to the light  
+ */  
+public void updateLightRGBL(String devId, int[ ] rgb, String lValue);
+
+```
+The rgb array is a three-bit array. The three-bit values of the array are r, g, b, and the color value ranges from 0-255.
+### 5.6 Update Light Power
+You can set the light on and off, you can turn on or to turn off the light bulb.
+```java
+/**  *  
+ * @param devId    device's devId  
+ * @param willStatus      set willstatus  
+ */  
+public void updateLightPower(String devId, boolean willStatus);
+
+```
+### 5.7 Set Light Flow
+You can set the mode of the lamp to the streamer mode. In this mode, you can select which of the four colors the lights are and set the interval between the appearance of the four colors. 
+```java
+/**  *  
+ * @param devId    device's devId 
+ * @param rgb1      set rgb 
+ * @param rgb2      set rgb 
+ * @param rgb3      set rgb 
+ * @param rgb4      set rgb 
+ * @param tValue   set flow time 
+ * @param lValue   set brightness to the light 
+ */ 
+public void setLightFlow(String devId, int[ ] rgb1, int[ ] rgb2, int[ ] rgb3, int[ ] rgb4,String tValue,String lValue);
+
+```
+### 5.8 Resubscribe DeviceTopic
+You can set the mode of the lamp to the streamer mode. In this mode, you can select which of the four colors the lights are and set the interval between the appearance of the four colors. 
+```java
+public void reunsubscribeDeviceTopic(String devId)；
+
+```
+You must use this interface, which is used to get device reservation information. You must use this interface, which is used to get device reservation information.
 ### Data model
 
 #### DeviceVo
@@ -584,14 +637,18 @@ You can remove your device. If the device is removed, the device is reset to net
 ```java
 private Device device; 
 private List<FunctionPoint> functionList; 
-private HashMap<String, Boolean> functionValuesMap;  //Code.FUNCTION_MAP_KEY 
+private HashMap<String, String> functionValuesMap;  //Code.FUNCTION_MAP_KEY 
 private String homeName; 
 private int homeId; 
 private String roomName; 
 private boolean host; 
 private boolean hasCountDown;
 ```
-
+The outlet contains the following properties:
+  "power";
+The light bulb contains the following properties:
+  "colorLight", the mode is white light mode, the colorLight value is 0-100, 0 represents off, 100 is the maximum brightness;
+  "colorData", mode is monochromatic light mode;
 #### Device
 ```java
 private int id; 
@@ -603,7 +660,8 @@ private long createTime; 
 private long updateTime; 
 private String uuid; 
 private String hid; 
-private String devId;  // about device control private boolean actived; 
+private String devId;  // about device control 
+private boolean actived; 
 private String authKey; 
 private String secKey; 
 private String localKey; 
@@ -865,11 +923,48 @@ Once you update a timing countdown, it will become a new one.
      EHomeInterface.getINSTANCE().removeTimerClockWithDeviceModel(devId);
 
 ```
+## 9. FeedBack
+### 9.1 Get all feddbacks
+You can get all the feedback and see other people's feedback.
+```java
+/**  *  
+ * @param tag  
+ * @param current current page  
+ * @param size    current page size  
+ */  
+  EHomeInterface.getINSTANCE().getAllFeedBacks(tag, current, size, new FeedbacksCallback() {
+    @Override
+    public void onSuccess(Response<BaseListResponse<FeedBack>> response) {
+    }
 
+    @Override
+    public void onError(Response<BaseListResponse<FeedBack>> response) {
+    }
+});
 
+```
 
+### 9.2 Add feddbacks
+You can submit your own feedback.
+```java
+/**  *  
+* @param tag 
+ * @param content feedback content 
+ * @param pic    feedback picture 
+ */ 
+ EHomeInterface.getINSTANCE().addFeedback(tag, content, pic, new BaseCallback() {
+    @Override
+    public void onSuccess(Response<BaseResponse> response) {
+    }
 
-## 9. Necessary Events
+    @Override
+    public void onError(Response<BaseResponse> response) {
+    }
+});
+
+```
+
+## 10. Necessary Events
 All events meanings can be found in the corresponding class file. Please check the usage of Eventbus at first glance. For all the usage of these EventBus, associated Event should be handled properly.
 
 
@@ -959,10 +1054,53 @@ All events meanings can be found in the corresponding class file. Please check t
 @Subscribe(threadMode = ThreadMode.MAIN, priority = 1, sticky = true) public void onEventMainThread(MqttCancelTimerSuccessEvent event) {}
 
 ```
+### Select light mode event
+```java
+@Subscribe(threadMode = ThreadMode.MAIN, priority = 1, sticky = true) public void onEventMainThread(MqttReceiveLightModeEvent  event) {
+     switch (event.getLightMode()){
+            case Code.FLOW_MODE_CONTROL:    // Streamer mode 
+               
+                break;
+            case Code.LIGHT_MODE_L:    // White mode 
+         
+                break;
+            case Code.LIGHT_MODE_RGBL:   // Monochromatic light mode 
 
+                break;
+        }
+}
+
+```
+### Data model
+
+#### MqttReceiveLightModeEvent
+```java
+private String devId; 
+private int[] rgb; 
+private int[] rgb1; 
+private int[] rgb2; 
+private int[] rgb3; 
+private int[] rgb4; 
+private int tValue; 
+private int lValue; 
+private int lightMode; 
+private int index; 
+
+```
+The parameters in the monochromatic light mode are devId, rgb, lValue, lightMode, index;
+Some parameters in white mode are devId, lValue, lightMode, index;
+Streaming mode parameters are devId, rgb1, rgb2, rgb3, rgb4, tValue, lValue, lightMode, index.
+#### MqttReceiveLightModePowerEvent
+```java
+private String devId; 
+private boolean  status; 
+private int index; 
+
+```
+Light off mode parameters，status=false.
 ## Welcome to contact us:
 * Android SDK Contributors: Zheng Li, Pan Zhao, Shiwen Ning
-* Email : zhouwei20150901@icloud.com, whatie@qq.com
+* Email : bxy3000@163.com, whatie@qq.com
 
 ## LICENSE
 WhatieSDK uses MIT LICENSE.
