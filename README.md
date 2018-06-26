@@ -626,7 +626,7 @@ public void setLightFlow(String devId, int[ ] rgb1, int[ ] rgb2, int[ ] rgb3, in
 ### 5.8 Resubscribe DeviceTopic
 You can set the mode of the lamp to the streamer mode. In this mode, you can select which of the four colors the lights are and set the interval between the appearance of the four colors. 
 ```java
-public void reunsubscribeDeviceTopic(String devId)；
+public void reSubscribeDeviceTopic(String devId)；
 
 ```
 You must use this interface, which is used to get device reservation information. You must use this interface, which is used to get device reservation information.
