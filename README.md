@@ -798,10 +798,66 @@ Set a timer to operate the device on some specifical time.Your operation on the 
             super.onError(response);             
         }         
     });
-
 ```
+**Timer with category(updated 2018/6/29):**
+```java
+/**  *   
+    * @param mContext  
+    * @param category  
+    * @param deviceId  
+    * @param timerType //A sevent-bit binary string. From the lowest bit to highest bit, indicating Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday respectively. “1” means this timer will execute, and “0” means not. For example, “1100000” means timer will execute on Sunday and Saturday, “0000000” means timer will execute only once without repeat. 
+    * @param hour  //from “00” to “23”  * @param min   //from “00” to “59”  * @param dps   //execution state of device  * @param baseCallback  
+    */
+    EHomeInterface.getINSTANCE().addTimer(mContext, category, deviceId, timetype, finishHour, finishMin, deviceState, new BaseCallback() {             
+        @Override             
+        public void onSuccess(Response<BaseResponse> response) {                             
+        }              
+        @Override             
+        public void onError(Response<BaseResponse> response) {                 
+            super.onError(response);             
+        }         
+    });
+```
+### 7.2 Edit timer
 
-### 7.2 Update timer status
+
+```java
+/**  *   
+    * @param mContext  
+    * @param clockId  
+    * @param timerType //A sevent-bit binary string. From the lowest bit to highest bit, indicating Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday respectively. “1” means this timer will execute, and “0” means not. For example, “1100000” means timer will execute on Sunday and Saturday, “0000000” means timer will execute only once without repeat. 
+    * @param hour  //from “00” to “23”  * @param min   //from “00” to “59”  * @param dps   //execution state of device  * @param baseCallback  
+    */
+    EHomeInterface.getINSTANCE().editTimer(mContext, clockId, timetype, finishHour, finishMin, deviceState, new BaseCallback() {             
+        @Override             
+        public void onSuccess(Response<BaseResponse> response) {                             
+        }              
+        @Override             
+        public void onError(Response<BaseResponse> response) {                 
+            super.onError(response);             
+        }         
+    });
+```
+**Edit timer with category(updated 2018/6/29):**
+```java
+/**  *   
+    * @param mContext  
+    * @param category  
+    * @param deviceId  
+    * @param timerType //A sevent-bit binary string. From the lowest bit to highest bit, indicating Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday respectively. “1” means this timer will execute, and “0” means not. For example, “1100000” means timer will execute on Sunday and Saturday, “0000000” means timer will execute only once without repeat. 
+    * @param hour  //from “00” to “23”  * @param min   //from “00” to “59”  * @param dps   //execution state of device  * @param baseCallback  
+    */
+    EHomeInterface.getINSTANCE().editTimer(mContext, category, clockId, timetype, finishHour, finishMin, deviceState, new BaseCallback() {             
+        @Override             
+        public void onSuccess(Response<BaseResponse> response) {                             
+        }              
+        @Override             
+        public void onError(Response<BaseResponse> response) {                 
+            super.onError(response);             
+        }         
+    });
+```
+### 7.3 Update timer status
 Update the status of a specified timer under a specified device, i.e., 0: off, 1: on, using the following method:
 
 ```java
@@ -823,7 +879,7 @@ Update the status of a specified timer under a specified device, i.e., 0: off, 1
     });
 ```
 
-### 7.3 Remove a timer
+### 7.4 Remove a timer
 Delete a specified timer under a specified device by:
 
 ```java
@@ -844,7 +900,7 @@ Delete a specified timer under a specified device by:
 
 ```
 
-### 7.4 Obtain all timers of a device
+### 7.5 Obtain all timers of a device
 
 Obtain all timers under a specified device by:
 
@@ -986,7 +1042,8 @@ All events meanings can be found in the corresponding class file. Please check t
 
 ```
 
-### Offline event
+### Offline event(updated 2018/6/29)
+SDK now send this event once device was reset manually by holding the power button
 
 ```java
 @Subscribe(threadMode = ThreadMode.MAIN, priority = 1, sticky = true) public void onEventMainThread(MqttReceiveStatusEvent event) {}
