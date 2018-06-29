@@ -1,9 +1,9 @@
 
-## WahtieSDK for Android v1.2.0 updated at 2018-06-10
+## WahtieSDK for Android v1.3.0 updated at 2018-06-19
 
 ```
 What's new:
-All APIs for electrical outlets and bulbs. SDK has been updated. DEMP APP will be provided lately, and then this SDK manual will be updated, too.
+Now SDK, DEMO APP, and SDK usage manual for bulbs are available. 
 ```
 
 WhatieSDK is an SDK provided by ATI TECHNOLOGY (WUHAN) CO.,LTD. for the 3rd party accessing to our ATI IoT cloud platform easily and quickly. Using this SDK, developers can do almost all funcation points on electrical outlets and RGBW bulbs, such as user registration/login/logout, smart configration, add/share/remove devices, device control, timing countdown, timer, etc. 
@@ -576,7 +576,60 @@ You can remove your device. If the device is removed, the device is reset to net
     });
 
 ```
+### 5.4 Update Light Brightness
+In white mode, you can adjust the brightness of the light.
+```java
+/**  *  
+ * @param devId    device's devId  
+ * @param lValue   set brightness to the light  
+ */  
+public void updateLightBrightness(String devId,String lValue);
 
+```
+### 5.5 Update Light RGBL
+In monochromatic light mode, you can choose the color of the light and adjust the brightness of the light. 
+```java
+/**  *  
+ * @param devId    device's devId  
+ * @param rgb      set rgb  
+ * @param lValue   set brightness to the light  
+ */  
+public void updateLightRGBL(String devId, int[ ] rgb, String lValue);
+
+```
+The rgb array is a three-bit array. The three-bit values of the array are r, g, b, and the color value ranges from 0-255.
+### 5.6 Update Light Power
+You can set the light on and off, you can turn on or to turn off the light bulb.
+```java
+/**  *  
+ * @param devId    device's devId  
+ * @param willStatus      set willstatus  
+ */  
+public void updateLightPower(String devId, boolean willStatus);
+
+```
+### 5.7 Set Light Flow
+You can set the mode of the lamp to the streamer mode. In this mode, you can select which of the four colors the lights are and set the interval between the appearance of the four colors. 
+```java
+/**  *  
+ * @param devId    device's devId 
+ * @param rgb1      set rgb 
+ * @param rgb2      set rgb 
+ * @param rgb3      set rgb 
+ * @param rgb4      set rgb 
+ * @param tValue   set flow time 
+ * @param lValue   set brightness to the light 
+ */ 
+public void setLightFlow(String devId, int[ ] rgb1, int[ ] rgb2, int[ ] rgb3, int[ ] rgb4,String tValue,String lValue);
+
+```
+### 5.8 Resubscribe DeviceTopic
+You can set the mode of the lamp to the streamer mode. In this mode, you can select which of the four colors the lights are and set the interval between the appearance of the four colors. 
+```java
+public void reSubscribeDeviceTopic(String devId)；
+
+```
+You must use this interface, which is used to get device reservation information. You must use this interface, which is used to get device reservation information.
 ### Data model
 
 #### DeviceVo
@@ -584,14 +637,18 @@ You can remove your device. If the device is removed, the device is reset to net
 ```java
 private Device device; 
 private List<FunctionPoint> functionList; 
-private HashMap<String, Boolean> functionValuesMap;  //Code.FUNCTION_MAP_KEY 
+private HashMap<String, String> functionValuesMap;  //Code.FUNCTION_MAP_KEY 
 private String homeName; 
 private int homeId; 
 private String roomName; 
 private boolean host; 
 private boolean hasCountDown;
 ```
-
+The outlet contains the following properties:
+  "power";
+The light bulb contains the following properties:
+  "colorLight", the mode is white light mode, the colorLight value is 0-100, 0 represents off, 100 is the maximum brightness;
+  "colorData", mode is monochromatic light mode;
 #### Device
 ```java
 private int id; 
@@ -603,7 +660,8 @@ private long createTime; 
 private long updateTime; 
 private String uuid; 
 private String hid; 
-private String devId;  // about device control private boolean actived; 
+private String devId;  // about device control 
+private boolean actived; 
 private String authKey; 
 private String secKey; 
 private String localKey; 
@@ -740,10 +798,66 @@ Set a timer to operate the device on some specifical time.Your operation on the 
             super.onError(response);             
         }         
     });
-
 ```
+**Timer with category(updated 2018/6/29):**
+```java
+/**  *   
+    * @param mContext  
+    * @param category  
+    * @param deviceId  
+    * @param timerType //A sevent-bit binary string. From the lowest bit to highest bit, indicating Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday respectively. “1” means this timer will execute, and “0” means not. For example, “1100000” means timer will execute on Sunday and Saturday, “0000000” means timer will execute only once without repeat. 
+    * @param hour  //from “00” to “23”  * @param min   //from “00” to “59”  * @param dps   //execution state of device  * @param baseCallback  
+    */
+    EHomeInterface.getINSTANCE().addTimer(mContext, category, deviceId, timetype, finishHour, finishMin, deviceState, new BaseCallback() {             
+        @Override             
+        public void onSuccess(Response<BaseResponse> response) {                             
+        }              
+        @Override             
+        public void onError(Response<BaseResponse> response) {                 
+            super.onError(response);             
+        }         
+    });
+```
+### 7.2 Edit timer
 
-### 7.2 Update timer status
+
+```java
+/**  *   
+    * @param mContext  
+    * @param clockId  
+    * @param timerType //A sevent-bit binary string. From the lowest bit to highest bit, indicating Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday respectively. “1” means this timer will execute, and “0” means not. For example, “1100000” means timer will execute on Sunday and Saturday, “0000000” means timer will execute only once without repeat. 
+    * @param hour  //from “00” to “23”  * @param min   //from “00” to “59”  * @param dps   //execution state of device  * @param baseCallback  
+    */
+    EHomeInterface.getINSTANCE().editTimer(mContext, clockId, timetype, finishHour, finishMin, deviceState, new BaseCallback() {             
+        @Override             
+        public void onSuccess(Response<BaseResponse> response) {                             
+        }              
+        @Override             
+        public void onError(Response<BaseResponse> response) {                 
+            super.onError(response);             
+        }         
+    });
+```
+**Edit timer with category(updated 2018/6/29):**
+```java
+/**  *   
+    * @param mContext  
+    * @param category  
+    * @param deviceId  
+    * @param timerType //A sevent-bit binary string. From the lowest bit to highest bit, indicating Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday respectively. “1” means this timer will execute, and “0” means not. For example, “1100000” means timer will execute on Sunday and Saturday, “0000000” means timer will execute only once without repeat. 
+    * @param hour  //from “00” to “23”  * @param min   //from “00” to “59”  * @param dps   //execution state of device  * @param baseCallback  
+    */
+    EHomeInterface.getINSTANCE().editTimer(mContext, category, clockId, timetype, finishHour, finishMin, deviceState, new BaseCallback() {             
+        @Override             
+        public void onSuccess(Response<BaseResponse> response) {                             
+        }              
+        @Override             
+        public void onError(Response<BaseResponse> response) {                 
+            super.onError(response);             
+        }         
+    });
+```
+### 7.3 Update timer status
 Update the status of a specified timer under a specified device, i.e., 0: off, 1: on, using the following method:
 
 ```java
@@ -765,7 +879,7 @@ Update the status of a specified timer under a specified device, i.e., 0: off, 1
     });
 ```
 
-### 7.3 Remove a timer
+### 7.4 Remove a timer
 Delete a specified timer under a specified device by:
 
 ```java
@@ -786,7 +900,7 @@ Delete a specified timer under a specified device by:
 
 ```
 
-### 7.4 Obtain all timers of a device
+### 7.5 Obtain all timers of a device
 
 Obtain all timers under a specified device by:
 
@@ -865,11 +979,48 @@ Once you update a timing countdown, it will become a new one.
      EHomeInterface.getINSTANCE().removeTimerClockWithDeviceModel(devId);
 
 ```
+## 9. FeedBack
+### 9.1 Get all feddbacks
+You can get all the feedback and see other people's feedback.
+```java
+/**  *  
+ * @param tag  
+ * @param current current page  
+ * @param size    current page size  
+ */  
+  EHomeInterface.getINSTANCE().getAllFeedBacks(tag, current, size, new FeedbacksCallback() {
+    @Override
+    public void onSuccess(Response<BaseListResponse<FeedBack>> response) {
+    }
 
+    @Override
+    public void onError(Response<BaseListResponse<FeedBack>> response) {
+    }
+});
 
+```
 
+### 9.2 Add feddbacks
+You can submit your own feedback.
+```java
+/**  *  
+* @param tag 
+ * @param content feedback content 
+ * @param pic    feedback picture 
+ */ 
+ EHomeInterface.getINSTANCE().addFeedback(tag, content, pic, new BaseCallback() {
+    @Override
+    public void onSuccess(Response<BaseResponse> response) {
+    }
 
-## 9. Necessary Events
+    @Override
+    public void onError(Response<BaseResponse> response) {
+    }
+});
+
+```
+
+## 10. Necessary Events
 All events meanings can be found in the corresponding class file. Please check the usage of Eventbus at first glance. For all the usage of these EventBus, associated Event should be handled properly.
 
 
@@ -891,7 +1042,8 @@ All events meanings can be found in the corresponding class file. Please check t
 
 ```
 
-### Offline event
+### Offline event(updated 2018/6/29)
+SDK now send this event once device was reset manually by holding the power button
 
 ```java
 @Subscribe(threadMode = ThreadMode.MAIN, priority = 1, sticky = true) public void onEventMainThread(MqttReceiveStatusEvent event) {}
@@ -959,10 +1111,53 @@ All events meanings can be found in the corresponding class file. Please check t
 @Subscribe(threadMode = ThreadMode.MAIN, priority = 1, sticky = true) public void onEventMainThread(MqttCancelTimerSuccessEvent event) {}
 
 ```
+### Select light mode event
+```java
+@Subscribe(threadMode = ThreadMode.MAIN, priority = 1, sticky = true) public void onEventMainThread(MqttReceiveLightModeEvent  event) {
+     switch (event.getLightMode()){
+            case Code.FLOW_MODE_CONTROL:    // Streamer mode 
+               
+                break;
+            case Code.LIGHT_MODE_L:    // White mode 
+         
+                break;
+            case Code.LIGHT_MODE_RGBL:   // Monochromatic light mode 
 
+                break;
+        }
+}
+
+```
+### Data model
+
+#### MqttReceiveLightModeEvent
+```java
+private String devId; 
+private int[] rgb; 
+private int[] rgb1; 
+private int[] rgb2; 
+private int[] rgb3; 
+private int[] rgb4; 
+private int tValue; 
+private int lValue; 
+private int lightMode; 
+private int index; 
+
+```
+The parameters in the monochromatic light mode are devId, rgb, lValue, lightMode, index;
+Some parameters in white mode are devId, lValue, lightMode, index;
+Streaming mode parameters are devId, rgb1, rgb2, rgb3, rgb4, tValue, lValue, lightMode, index.
+#### MqttReceiveLightModePowerEvent
+```java
+private String devId; 
+private boolean  status; 
+private int index; 
+
+```
+Light off mode parameters，status=false.
 ## Welcome to contact us:
 * Android SDK Contributors: Zheng Li, Pan Zhao, Shiwen Ning
-* Email : zhouwei20150901@icloud.com, whatie@qq.com
+* Email : bxy3000@163.com, whatie@qq.com
 
 ## LICENSE
 WhatieSDK uses MIT LICENSE.
