@@ -583,10 +583,10 @@ In white mode, you can adjust the brightness of the light.
  * @param devId    device's devId  
  * @param lValue   set brightness to the light  
  */  
-public void updateLightBrightness(String devId,String lValue);
+public void updateLightBrightness(String devId,int lValue);
 
 ```
-### 5.5 Update Light RGBL
+### 5.5 Update Light RGBL（updated 2018/6/30）
 In monochromatic light mode, you can choose the color of the light and adjust the brightness of the light. 
 ```java
 /**  *  
@@ -594,7 +594,7 @@ In monochromatic light mode, you can choose the color of the light and adjust th
  * @param rgb      set rgb  
  * @param lValue   set brightness to the light  
  */  
-public void updateLightRGBL(String devId, int[ ] rgb, String lValue);
+public void updateLightRGBL(String devId, int[ ] rgb, int lValue);
 
 ```
 The rgb array is a three-bit array. The three-bit values of the array are r, g, b, and the color value ranges from 0-255.
@@ -608,7 +608,7 @@ You can set the light on and off, you can turn on or to turn off the light bulb.
 public void updateLightPower(String devId, boolean willStatus);
 
 ```
-### 5.7 Set Light Flow
+### 5.7 Set Light Flow（updated 2018/6/30）
 You can set the mode of the lamp to the streamer mode. In this mode, you can select which of the four colors the lights are and set the interval between the appearance of the four colors. 
 ```java
 /**  *  
@@ -620,7 +620,7 @@ You can set the mode of the lamp to the streamer mode. In this mode, you can sel
  * @param tValue   set flow time 
  * @param lValue   set brightness to the light 
  */ 
-public void setLightFlow(String devId, int[ ] rgb1, int[ ] rgb2, int[ ] rgb3, int[ ] rgb4,String tValue,String lValue);
+public void setLightFlow(String devId, int[ ] rgb1, int[ ] rgb2, int[ ] rgb3, int[ ] rgb4,int tValue,int lValue);
 
 ```
 ### 5.8 Resubscribe DeviceTopic
